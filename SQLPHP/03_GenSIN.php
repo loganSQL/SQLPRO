@@ -6,7 +6,7 @@
 		$separator='-':		the default separator is ' ', but I changed to '-'
 
 	Interesting Reading for SIN :	http://www.hackcanada.com/canadian/other/sin.html
-									https://github.com/corbanworks/fng-sin-tools
+					https://github.com/corbanworks/fng-sin-tools
 */
 
 class fngsin{
