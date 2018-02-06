@@ -6,7 +6,7 @@
 		$separator='-':		the default separator is ' ', but I changed to '-'
 
 	Interesting Reading for SIN :	http://www.hackcanada.com/canadian/other/sin.html
-					https://github.com/corbanworks/fng-sin-tools
+	Credit							https://github.com/corbanworks/fng-sin-tools
 */
 
 class fngsin{
@@ -90,8 +90,8 @@ GO
 */
 
 /* Specify the server and connection string attributes. */  
-$serverName = "172.16.40.119";  
-$connectionInfo = array( "Database"=>"testdb", "UID"=>"sa", "PWD"=>"Xmas2017");  
+$serverName = "1.1.1.111";  
+$connectionInfo = array( "Database"=>"testdb", "UID"=>"sa", "PWD"=>"luckypwd");  
 
 $conn = sqlsrv_connect( $serverName, $connectionInfo);  
 if( $conn === false )  
