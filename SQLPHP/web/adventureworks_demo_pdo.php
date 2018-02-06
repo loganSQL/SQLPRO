@@ -21,7 +21,7 @@ PARTICULAR PURPOSE.
                    object oriented API (PDO_SQLSRV driver) for the   
                    Microsoft Drivers for PHP for SQL Server.</h5><br/>  
 <?php  
-$serverName = "MYSERVER";
+$serverName = "YourSERVER";
 
 /* Connect using Windows Authentication. */  
 try  
