@@ -1,0 +1,28 @@
+﻿
+
+1. Some references
+
+Microsoft Drivers for PHP for SQL Server
+
+https://github.com/Microsoft/msphpsql
+
+Create PHP apps using SQL Server on Ubuntu
+
+https://www.microsoft.com/en-us/sql-server/developer-get-started/php/ubuntu/
+
+2.	For PHP
+2.1. Install PHP and other required packages on Ubuntu
+sudo apt-get -y install php7.0 libapache2-mod-php7.0 mcrypt php7.0-mcrypt php-mbstring php-pear php7.0-dev apache2
+
+2.2.  Install the PHP Driver for SQL Server
+sudo pecl install sqlsrv pdo_sqlsrv
+sudo echo "extension= pdo_sqlsrv.so" >> `php --ini | grep "Loaded Configuration" | sed -e "s|.*:\s*||"`
+sudo echo "extension= sqlsrv.so" >> `php --ini | grep "Loaded Configuration" | sed -e "s|.*:\s*||"`
+
+The last two lines are adding the following to /etc/php/7.0/cli/php.ini
+# chmod 777 php.ini
+extension= pdo_sqlsrv.so
+extension= sqlsrv.so
+# chmod 644 php.ini
+
+

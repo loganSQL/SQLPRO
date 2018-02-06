@@ -1,0 +1,91 @@
+﻿1. Download Microsoft Drivers 4.3 for PHP for SQL Server
+https://www.microsoft.com/en-us/download/details.aspx?id=55642
+
+2. Pick the appropriate dll - for example php_pdo_sqlsrv_71_nts_x64 for the PDO Driver and php_sqlsrv_71_nts_x64 for the SQLSRV driver
+Copy the dll’s to the C:\Program Files\iis express\PHP\v7.1\ext folder
+
+3. Add two lines on php.ini in C:\Program Files\IIS Express\PHP\v7.1
+extension=php_sqlsrv_71_nts_x64.dll
+extension=php_pdo_sqlsrv_71_nts_x64.dll
+
+4. Verify
+where php.exe
+
+cd "C:\Program Files\iis express\PHP\v7.1"
+
+C:\Program Files\IIS Express\PHP\v7.1>.\php.exe --ri sqlsrv
+Extension 'sqlsrv' not present.
+
+C:\Program Files\IIS Express\PHP\v7.1>notepad php.ini
+
+C:\Program Files\IIS Express\PHP\v7.1>.\php.exe --ri sqlsrv
+
+sqlsrv
+
+sqlsrv support => enabled
+ExtensionVer => 4.3.0+9905
+
+Directive => Local Value => Master Value
+sqlsrv.WarningsReturnAsErrors => On => On
+sqlsrv.LogSeverity => 0 => 0
+sqlsrv.LogSubsystems => 0 => 0
+sqlsrv.ClientBufferMaxKBSize => 10240 => 10240
+
+5. Connect with windows authentication to get servername and version
+<?php  
+/* Specify the server and connection string attributes. */  
+$serverName = "(local)";  
+$connectionInfo = array( "Database"=>"tempdb");  
+/*****
+/* Specify the server and connection string for remote Linux Server. */  
+$serverName = "1.1.1.119";  
+$connectionInfo = array( "Database"=>"tempdb", "UID"=>"sa", "PWD"=>"Xmas2017");  
+******/
+
+/* Connect using Windows Authentication. */  
+$conn = sqlsrv_connect( $serverName, $connectionInfo);  
+if( $conn === false )  
+{  
+     echo "Unable to connect.</br>";  
+     die( print_r( sqlsrv_errors(), true));  
+}  
+
+/* Query SQL Server for the login of the user accessing the  
+database. */  
+$tsql = "SELECT @@servername,@@version";  
+$stmt = sqlsrv_query( $conn, $tsql);  
+if( $stmt === false )  
+{  
+     echo "Error in executing query.</br>";  
+     die( print_r( sqlsrv_errors(), true));  
+}  
+
+/* Retrieve and display the results of the query. */  
+$row = sqlsrv_fetch_array($stmt);  
+echo "Server Name=> ".$row[0]."\n"; 
+echo "Version=> ".$row[1]."\n";  
+
+/* Free statement and connection resources. */  
+sqlsrv_free_stmt( $stmt);  
+sqlsrv_close( $conn);  
+?> 
+
+6. Using PDO_SQLSRV drive to do simple task
+<?php  
+try {  
+   $conn = new PDO( "sqlsrv:Server=(local);Database=AdventureWorks2016", NULL, NULL);   
+   $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );  
+}  
+
+catch( PDOException $e ) {  
+   die( "Error connecting to SQL Server" );   
+}  
+
+echo "Connected to SQL Server\n";  
+
+$query = 'select * from Person.ContactType';   
+$stmt = $conn->query( $query );   
+while ( $row = $stmt->fetch( PDO::FETCH_ASSOC ) ){   
+   print_r( $row );   
+}  
+?>  
