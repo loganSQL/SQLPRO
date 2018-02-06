@@ -5,8 +5,8 @@
 		$howMany =100 :		number of SINs you want (by default is 1000)
 		$separator='-':		the default separator is ' ', but I changed to '-'
 
-	Interesting Reading for SIN :	http://www.hackcanada.com/canadian/other/sin.html
-	Credit							https://github.com/corbanworks/fng-sin-tools
+	Interesting Reading for SIN:	http://www.hackcanada.com/canadian/other/sin.html
+	Class fngsin is credited from:	https://github.com/corbanworks/fng-sin-tools
 */
 
 class fngsin{
