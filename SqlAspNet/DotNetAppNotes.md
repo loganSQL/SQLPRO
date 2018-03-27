@@ -260,7 +260,7 @@ Follow MVC design pattern, reverse engineering to create an Entity Framework mod
     dotnet ef -h
     
     # This will generate dbcontext <Table>.cs under Models
-    dotnet ef dbcontext scaffold "Server=MyHost;Initial Catalog=Blogging;Persist Security Info=False;User ID=sa;Password=Xmas2017;MultipleActiveResultSets=False;" Microsoft.EntityFrameworkCore.SqlServer -o Models -f -c BloggingContext --verbose
+    dotnet ef dbcontext scaffold "Server=MyHost;Initial Catalog=Blogging;Persist Security Info=False;User ID=sa;Password=MySecret;MultipleActiveResultSets=False;" Microsoft.EntityFrameworkCore.SqlServer -o Models -f -c BloggingContext --verbose
     
     dir .\Models
     
