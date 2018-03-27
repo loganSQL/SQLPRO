@@ -57,7 +57,7 @@ Application started. Press Ctrl+C to shut down.
     # 3. Add a database connection string
 ```
   "ConnectionStrings": {
-    "MovieContext": "Server=TORFN-L812;Initial Catalog=MovieDB;Persist Security Info=False;User ID=sa;Password=MySecret;MultipleActiveResultSets=True;"
+    "MovieContext": "Server=MyHost;Initial Catalog=MovieDB;Persist Security Info=False;User ID=sa;Password=MySecret;MultipleActiveResultSets=True;"
   }
 ```
     # 4. Register the database context with the dependency injection container in the Startup.cs file.
@@ -106,7 +106,7 @@ Mode                LastWriteTime         Length Name
 
 ```
 info: Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager[0]
-      User profile is available. Using 'C:\Users\logan.chen\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+      User profile is available. Using 'C:\Users\logan.sql\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
 info: Microsoft.EntityFrameworkCore.Infrastructure[10403]
       Entity Framework Core 2.0.2-rtm-10011 initialized 'MovieContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
 info: Microsoft.EntityFrameworkCore.Database.Command[20101]
@@ -159,7 +159,7 @@ Running the generator 'razorpage'...
 Attempting to compile the application in memory.
 Attempting to figure out the EntityFramework metadata for the model and DbContext: 'Movie'
 info: Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager[0]
-      User profile is available. Using 'C:\Users\logan.chen\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+      User profile is available. Using 'C:\Users\logan.sql\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
 info: Microsoft.EntityFrameworkCore.Infrastructure[10403]
       Entity Framework Core 2.0.2-rtm-10011 initialized 'MovieContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
 Added Razor Page : \Pages\Movies\Create.cshtml
@@ -260,7 +260,7 @@ Follow MVC design pattern, reverse engineering to create an Entity Framework mod
     dotnet ef -h
     
     # This will generate dbcontext <Table>.cs under Models
-    dotnet ef dbcontext scaffold "Server=TORFN-L812;Initial Catalog=Blogging;Persist Security Info=False;User ID=sa;Password=Xmas2017;MultipleActiveResultSets=False;" Microsoft.EntityFrameworkCore.SqlServer -o Models -f -c BloggingContext --verbose
+    dotnet ef dbcontext scaffold "Server=MyHost;Initial Catalog=Blogging;Persist Security Info=False;User ID=sa;Password=Xmas2017;MultipleActiveResultSets=False;" Microsoft.EntityFrameworkCore.SqlServer -o Models -f -c BloggingContext --verbose
     
     dir .\Models
     
@@ -290,7 +290,7 @@ Follow MVC design pattern, reverse engineering to create an Entity Framework mod
 
         services.AddMvc();
     
-        var connection = @"Server=TORFN-L812;Initial Catalog=Blogging;Persist Security Info=False;User ID=sa;Password=MySecret;";
+        var connection = @"Server=MyHost;Initial Catalog=Blogging;Persist Security Info=False;User ID=sa;Password=MySecret;";
         services.AddDbContext<BloggingContext>(options => options.UseSqlServer(connection));
             
         }
@@ -317,7 +317,7 @@ Running the generator 'controller'...
 Attempting to compile the application in memory.
 Attempting to figure out the EntityFramework metadata for the model and DbContext: 'Blog'
 info: Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager[0]
-      User profile is available. Using 'C:\Users\logan.chen\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+      User profile is available. Using 'C:\Users\logan.sql\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
 info: Microsoft.EntityFrameworkCore.Infrastructure[10403]
       Entity Framework Core 2.0.2-rtm-10011 initialized 'BloggingContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
 Added Controller : '\.\Controllers\BlogController.cs'.
@@ -339,7 +339,7 @@ Running the generator 'controller'...
 Attempting to compile the application in memory.
 Attempting to figure out the EntityFramework metadata for the model and DbContext: 'Post'
 info: Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager[0]
-      User profile is available. Using 'C:\Users\logan.chen\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+      User profile is available. Using 'C:\Users\logan.sql\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
 info: Microsoft.EntityFrameworkCore.Infrastructure[10403]
       Entity Framework Core 2.0.2-rtm-10011 initialized 'BloggingContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
 Added Controller : '\.\Controllers\PostController.cs'.
