@@ -32,12 +32,12 @@ Resources
     # start the porgam
     dotnet new web
     dotnet run
----    
+```    
 Hosting environment: Production
 Content root path: C:\logan\test\DotNet\testweb
 Now listening on: http://localhost:5000
 Application started. Press Ctrl+C to shut down.
-
+```
 
 # Razor Pages Web App (EF Model=>DB)
 
@@ -55,14 +55,14 @@ Application started. Press Ctrl+C to shut down.
     #  Add a database context class named MovieContext.cs
 
     # 3. Add a database connection string
----
+```
   "ConnectionStrings": {
     "MovieContext": "Server=TORFN-L812;Initial Catalog=MovieDB;Persist Security Info=False;User ID=sa;Password=MySecret;MultipleActiveResultSets=True;"
   }
-
+```
     # 4. Register the database context with the dependency injection container in the Startup.cs file.
 
----
+```
 using RazorPagesMovie.Models;
 using Microsoft.EntityFrameworkCore;
 ...
@@ -75,12 +75,11 @@ public void ConfigureServices(IServiceCollection services)
 ...
     services.AddMvc();
 }
-
+```
     # 5. Add Tool Reference RazorPagesMovie.csproj file.
----
-
+```
 DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.1" />
-
+```
     # 6 Make sure save and close the folder on VSC before scaffold the database
 
     # 7 Add scaffold tooling
@@ -91,7 +90,7 @@ DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Vers
     # 8 Perform EF migration Add package
     # 
     dotnet ef migrations add InitialCreate
----
+```
 
 PS C:\logan\test\DotNet\RazorPagesMovie> dir .\Migrations\
 ...
@@ -101,11 +100,11 @@ Mode                LastWriteTime         Length Name
 -a----        3/26/2018  12:11 PM           1282 20180326161114_InitialCreate.cs
 -a----        3/26/2018  12:11 PM           1425 20180326161114_InitialCreate.Designer.cs
 -a----        3/26/2018  12:11 PM           1398 MovieContextModelSnapshot.cs
-
+```
     # 9 Run ef package InitialCreate
     dotnet ef database update
 
----
+```
 info: Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager[0]
       User profile is available. Using 'C:\Users\logan.chen\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
 info: Microsoft.EntityFrameworkCore.Infrastructure[10403]
@@ -149,11 +148,11 @@ info: Microsoft.EntityFrameworkCore.Database.Command[20101]
       Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
       INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
       VALUES (N'20180326162819_InitialCreate', N'2.0.2-rtm-10011');
-      
+```      
       # 10 Generate Pages (Insert / Edit / Delete etc)
       dotnet aspnet-codegenerator razorpage -m Movie -dc MovieContext -udl -outDir Pages\Movies --referenceScriptLibraries
 
----
+```
 Building project ...
 Finding the generator 'razorpage'...
 Running the generator 'razorpage'...
@@ -174,20 +173,20 @@ Added PageModel : \Pages\Movies\Delete.cshtml.cs
 Added Razor Page : \Pages\Movies\Index.cshtml
 Added PageModel : \Pages\Movies\Index.cshtml.cs
 RunTime 00:00:21.59
-
+```
     # 11 Start the program
     dotnet run
----
+```
 Hosting environment: Production
 Content root path: C:\logan\test\DotNet\RazorPagesMovie
 Now listening on: http://localhost:5000
 Application started. Press Ctrl+C to shut down.
 
 http://localhost:5000/Movies
-
+```
      # 11 How to listen to non localhost request
 
-set the port in the Main of the application where the new WebHostBuilder is created and configured. 
+Set the port in the Main of the application where the new WebHostBuilder is created and configured. 
 Just add .UseUrls() method like in the sample below
 
     public static void Main(string[] args)
@@ -215,15 +214,15 @@ something like
 
     # 12 Restart
     dotnet run
----
+```
 Hosting environment: Production
 Content root path: C:\logan\test\DotNet\RazorPagesMovie
 Now listening on: http://[::]:5000
 Application started. Press Ctrl+C to shut down.
 
-
+```
     # 13 Seed the database
-   [Link](https://docs.microsoft.com/en-us/aspnet/core/tutorials/razor-pages-vsc/sql)
+   [Detail Link](https://docs.microsoft.com/en-us/aspnet/core/tutorials/razor-pages-vsc/sql)
    
     # Add SeedData.cs in Models
     # Add the seed initializer in main()
@@ -249,10 +248,9 @@ Follow MVC design pattern, reverse engineering to create an Entity Framework mod
     dotnet add testmvcweb package Microsoft.VisualStudio.Web.CodeGeneration.Design
     
     #5.Check porject.json and let CliTool exposed
-    ...
-        <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet"
-                            Version="2.0.0" />
-    ...
+```
+<DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet"  Version="2.0.0" />
+```    
           
 [EF Core .NET Command-line Tools](<https://docs.microsoft.com/en-us/ef/core/miscellaneous/cli/dotnet>)
 
@@ -271,15 +269,15 @@ Follow MVC design pattern, reverse engineering to create an Entity Framework mod
     #    => Delete method OnConfiguring(...) 
     #    <= Add the following method allow configuration to be passed into the context by dependency injection
     #
- ---
+```
          public BloggingContext(DbContextOptions<BloggingContext> options)
             : base(options)
         { }
- ---
+```
  
     #8. Register and configure your context in Startup.cs
     # in Startup.cs, add the references:
-    
+```    
     using testmvcweb.Models;
     using Microsoft.EntityFrameworkCore;
     
@@ -296,9 +294,10 @@ Follow MVC design pattern, reverse engineering to create an Entity Framework mod
         services.AddDbContext<BloggingContext>(options => options.UseSqlServer(connection));
             
         }
- 
+``` 
     # 9 Generate Pages (Insert / Edit / Delete etc)
     cd ..\
+```
     # 9.1. Install package for the tool
     dotnet add testmvcweb package Microsoft.VisualStudio.Web.CodeGeneration.Design
     cd .\testmvcweb\
@@ -306,11 +305,12 @@ Follow MVC design pattern, reverse engineering to create an Entity Framework mod
     # 
     dotnet.exe aspnet-codegenerator --help
     dotnet.exe aspnet-codegenerator controller --help
+```
     #
     # 9.2. Generate Controller / Views for Entity Blog
     #
     dotnet aspnet-codegenerator controller -p .\ -name BlogController -m testmvcweb.Models.Blog -dc BloggingContext -outDir .\Controllers -f
----
+```
 Building project ...
 Finding the generator 'controller'...
 Running the generator 'controller'...
@@ -327,12 +327,12 @@ Added View : \Views\Blog\Details.cshtml
 Added View : \Views\Blog\Delete.cshtml
 Added View : \Views\Blog\Index.cshtml
 RunTime 00:00:17.24
-
+```
      #
      # 9.3. Generate Controller / Views for Entity Post
      #
      dotnet aspnet-codegenerator controller -p .\ -name PostController -m testmvcweb.Models.Post -dc BloggingContext -outDir .\Controllers -f
----
+```
 Building project ...
 Finding the generator 'controller'...
 Running the generator 'controller'...
@@ -349,7 +349,7 @@ Added View : \Views\Post\Details.cshtml
 Added View : \Views\Post\Delete.cshtml
 Added View : \Views\Post\Index.cshtml
 RunTime 00:00:19.03
-
+```
     #10. Start the site
     dotnet run
     
