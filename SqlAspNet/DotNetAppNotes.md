@@ -22,6 +22,8 @@ Resources
     cd testconsole
     code Program.cs
     dotnet run
+    
+Not enough? [Getting started with .NET Core on Windows/Linux/macOS using the command line](<https://docs.microsoft.com/en-us/dotnet/core/tutorials/using-with-xplat-cli>)
 
 # Web App
 
