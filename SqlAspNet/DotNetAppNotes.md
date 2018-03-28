@@ -41,7 +41,9 @@ Now listening on: http://localhost:5000
 Application started. Press Ctrl+C to shut down.
 ```
 
-# Razor Pages Web App (EF Model=>DB)
+# Razor Pages Web App (EF Migration: Model=>DB)
+
+If you want your EF Core model to be the source of truth, use ***Migrations***. As you make changes to your EF Core model, this approach incrementally applies the corresponding schema changes to your database so that it remains compatible with your EF Core model.
 
 [Razor Pages web app](https://docs.microsoft.com/en-us/aspnet/core/tutorials/razor-pages/)
 
@@ -232,7 +234,10 @@ Application started. Press Ctrl+C to shut down.
     dotnet run
 
 
-# Web App (Reversed From DB to EF Model)
+# MVC Web App (Reversed Engineering: DB => EF Model)
+
+Use ***Reverse Engineering*** if you want your database schema to be the source of truth. This approach allows you to scaffold a DbContext and the entity type classes by reverse engineering your database schema into an EF Core model.
+
 [Getting Started with EF Core on ASP.NET Core with an Existing Database](<https://docs.microsoft.com/en-us/ef/core/get-started/aspnetcore/existing-db>)
 
 Follow MVC design pattern, reverse engineering to create an Entity Framework model based on an existing database.
