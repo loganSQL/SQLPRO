@@ -1,10 +1,11 @@
 # Powershell Scripts for SQL Services
 ## Service Account Changes
 ```
+# Account and Password
 $UName="MyDomain\MyServiceAccount"
 $PWord="MySecretPwd"
 
-# MSSQLSERVER
+# service : MSSQLSERVER
 [System.Reflection.Assembly]::LoadWithPartialName("Microsoft.SqlServer.SqlWmiManagement") | out-null
 $SMOWmiserver = New-Object ('Microsoft.SqlServer.Management.Smo.Wmi.ManagedComputer')
 $SMOWmiserver.Services | select name, type, ServiceAccount, DisplayName, Properties, StartMode, StartupParameters | Format-List
@@ -15,7 +16,7 @@ $ChangeService | select name, type, ServiceAccount, DisplayName, Properties, Sta
 Restart-Service -Force MSSQLSERVER
 Get-Service "*SQL*"
 
-# SQLSERVERAGENT
+# service : SQLSERVERAGENT
 [System.Reflection.Assembly]::LoadWithPartialName("Microsoft.SqlServer.SqlWmiManagement") | out-null
 $SMOWmiserver = New-Object ('Microsoft.SqlServer.Management.Smo.Wmi.ManagedComputer')
 $SMOWmiserver.Services | select name, type, ServiceAccount, DisplayName, Properties, StartMode, StartupParameters | Format-List
