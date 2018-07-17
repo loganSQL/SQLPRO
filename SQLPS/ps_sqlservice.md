@@ -184,4 +184,4 @@ Set-DbaStartupParameter -SqlServer server1\instance1 -SingleUser -NoLoggingToWin
 # then do stuff !!!
 #fter the work has been completed, we can push the original startup parameters back
 Set-DbaStartupParameter -SqlServer server1\instance1 -StartUpConfig $StartUpConfig
-``
+```
