@@ -47,11 +47,16 @@ SHUTDOWN WITH NOWAIT;
 ```
 ### Powershell
 ```
+# 1. which computer
+###################
 sqlps
 # Get a reference to the ManagedComputer class.  
 CD SQLSERVER:\SQL\computername  
 $Wmi = (get-item .).ManagedComputer  
-
+```
+```
+# 2. which service
+##################
 # To get a reference to the default instance of the Database Engine.
 $DfltInstance = $Wmi.Services['MSSQLSERVER']  
 
@@ -68,8 +73,9 @@ $DfltInstance = $Wmi.Services['MSSQLSERVER']
 # $DfltInstance = $Wmi.Services['SQLBROWSER']  
 ```
 ```
-# to start and then stop the selected service as the following
-
+# 3. what to do
+################
+# to start and then stop the selected service
 # Display the state of the service.  
 $DfltInstance  
 # Start the service.  
