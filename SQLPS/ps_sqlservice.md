@@ -5,6 +5,22 @@
 * SQL Server 2016  C:\Windows\SysWOW64\SQLServerManager13.msc
 * SQL Server 2014 (12.x)  C:\Windows\SysWOW64\SQLServerManager12.msc
 * SQL Server 2012 (11.x)  C:\Windows\SysWOW64\SQLServerManager11.msc
+```
+# List all snap-in's for Microsoft Management Console (MMC)
+dir C:\Windows\SysWOW64\*.msc
+# List SQL Server Configuration Manager (SQLServerManager) Snap-in
+dir C:\Windows\SysWOW64\SQLServer*
+# Start SQLServerManager Snap-in
+# Start=>Run: 
+SQLServerManager13.msc
+```
+## SQL Services
+```
+Get-Service *SQL*
+Start-Service SQLSERVERAGENT
+Stop-Service SQLSERVERAGENT
+Restart-Service SQLSERVERAGENT
+```
 
 ## Start, Stop, Pause, Resume, Restart SQL Server Services
 
