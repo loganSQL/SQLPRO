@@ -45,7 +45,7 @@ net start SQLAgent$ instancename
 SHUTDOWN;
 SHUTDOWN WITH NOWAIT;  
 ```
-### Powershell
+### Powershell (WMI)
 ```
 # 1. which computer
 ###################
@@ -94,7 +94,7 @@ $DfltInstance.Refresh();
 $DfltInstance  
 ```
 
-## Service Account Changes
+## Service Account Changes (SMO)
 ```
 # Account and Password
 $UName="MyDomain\MyServiceAccount"
