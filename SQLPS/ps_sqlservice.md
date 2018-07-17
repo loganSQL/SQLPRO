@@ -26,10 +26,15 @@ net start MSSQL$ instancename
 # To start the Database Engine with startup options
 Add startup options to the end of the net start "SQL Server (MSSQLSERVER)" statement, separated by a space. When started using net start, startup options use a slash (/) instead of a hyphen (-).
 
-# -f starting sql instance with minima config and put it in single-user mode
+# -m single user mode
+# -f starting sql instance with minima config
 net start "SQL Server (MSSQLSERVER)" /f /m
 -or-
 net start MSSQLSERVER /f /m
+#
+# -m"SQLCMD"  => limits connections to a single connection and that connection must identify itself as the SQLCMD client program. Use this option when you are starting SQL Server in single-user mode and an unknown client application is taking the only available connection
+#
+# -m"Microsoft SQL Server Management Studio - Query"  => To connect through the Query Editor in Management Studio
 
 ###############
 # SQL Agent
@@ -123,3 +128,60 @@ Restart-Service -Force SQLSERVERAGENT
 Get-Service "*SQL*"
 
 ```
+
+## Change Startup Parameters
+### To Single-user mode (SMO)
+``` 
+# To change to Single-User mode (SMO)
+#######################################
+[System.Reflection.Assembly]::LoadWithPartialName("Microsoft.SqlServer.SqlWmiManagement") | out-null
+$SMOWmiserver = New-Object ('Microsoft.SqlServer.Management.Smo.Wmi.ManagedComputer')
+$SMOWmiserver.Services | select name, type, ServiceAccount, DisplayName, Properties, StartMode, StartupParameters | Format-List
+$ChangeService=$SMOWmiserver.Services | where {$_.name -eq "MSSQLSERVER"}
+$ChangeService.StartupParameters
+$oldparams=$ChangeService.StartupParameters
+$oldparams
+# The following to add -m to put SQL instance in single-user mode
+$ChangeService.StartupParameters=$oldparams+";-m"
+$ChangeService.StartupParameters
+$ChangeService.Alter()
+restart-service MSSQLSERVER
+```
+```
+# to verify, sqlcmd and SSMS
+sqlcmd -E
+# to check errorlog
+$env:COMPUTERNAME | Get-SqlErrorLog | Where-Object { $_.Text -match 'startup' }
+
+# To change it back (Multi-user)
+#################################
+$ChangeService=$SMOWmiserver.Services | where {$_.name -eq "MSSQLSERVER"}
+$ChangeService.StartupParameters
+$oldparams
+$ChangeService.StartupParameters = $oldparams
+$ChangeService.StartupParameters
+$ChangeService.Alter()
+Restart-Service MSSQLSERVER
+```
+### [Set-DbaStartupParameter](<https://dbatools.io/functions/set-dbastartupparameter/>)
+
+```
+# To configure the SQL Instance server1\instance1 to startup up in Single User mode at next startup
+Set-DbaStartupParameter -SqlServer server1\instance1 -SingleUser
+
+# To append Trace Flags 8032 and 8048 to the startup parameters
+Set-DbaStartupParameter -SqlServer server1\instance1 -SingleUser -TraceFlags 8032,8048
+
+# To remove all trace flags and set SinguleUser to false
+Set-DbaStartupParameter -SqlServer sql2016 -SingleUser:$false -TraceFlagsOverride
+```
+
+```
+# backup the existing startup configuration
+$StartupConfig = Get-DbaStartupParameter -SqlServer server1\instance1
+# change the startup parameters ahead of some work
+Set-DbaStartupParameter -SqlServer server1\instance1 -SingleUser -NoLoggingToWinEvents 
+# then do stuff !!!
+#fter the work has been completed, we can push the original startup parameters back
+Set-DbaStartupParameter -SqlServer server1\instance1 -StartUpConfig $StartUpConfig
+``
