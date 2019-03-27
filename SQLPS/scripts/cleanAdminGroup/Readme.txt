@@ -4,7 +4,7 @@ The powershell script to check the list of users in 'validuserlist.txt', and com
 
 runasadmin.bat
 --------------
-The batch script to start the above powershell script as aministrator. It can be called by task scheduler to automate the task.
+The batch script to start the above powershell script as administrator. It can be called by task scheduler to automate the task.
 
 
 Reference
