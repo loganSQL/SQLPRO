@@ -181,7 +181,8 @@ Cloning into 'LoganSQLGitRepos'...
 warning: You appear to have cloned an empty repository.
 done.
 
-## 2. copy whatever sql folders and Git Add
+## 2. Git Add
+## copy whatever sql folders and Git Add
 cd .\LoganSQLGitRepos
 git add *.*
 
