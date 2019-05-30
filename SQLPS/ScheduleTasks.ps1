@@ -20,6 +20,83 @@ $MyTask.Principal
 # Find all tasks owned by UserID
 Get-ScheduledTask |Where {$_.Principal.UserID  -eq 'logan.chen'}
 
+
+<#
+Export a scheduled task
+#>
+Export-ScheduledTask "CheckIn"
+Export-ScheduledTask "CheckIn" | out-file C:\temp\CheckIn.xml
+
+<# Here is output file as XML format
+<?xml version="1.0" encoding="UTF-16"?>
+<Task version="1.2" xmlns="http://schemas.microsoft.com/windows/2004/02/mit/task">
+  <RegistrationInfo>
+    <Date>2019-05-24T14:49:40.1107366</Date>
+    <Author>MYDomain\logansql</Author>
+    <URI>\CheckIn</URI>
+  </RegistrationInfo>
+  <Principals>
+    <Principal id="Author">
+      <UserId>S-1-5-21-647314393-1024732314-934288641-31517</UserId>
+      <LogonType>InteractiveToken</LogonType>
+      <RunLevel>HighestAvailable</RunLevel>
+    </Principal>
+  </Principals>
+  <Settings>
+    <DisallowStartIfOnBatteries>false</DisallowStartIfOnBatteries>
+    <StopIfGoingOnBatteries>true</StopIfGoingOnBatteries>
+    <MultipleInstancesPolicy>IgnoreNew</MultipleInstancesPolicy>
+    <RunOnlyIfNetworkAvailable>true</RunOnlyIfNetworkAvailable>
+    <IdleSettings>
+      <StopOnIdleEnd>true</StopOnIdleEnd>
+      <RestartOnIdle>false</RestartOnIdle>
+    </IdleSettings>
+  </Settings>
+  <Triggers>
+    <TimeTrigger>
+      <StartBoundary>2019-05-24T08:05:00</StartBoundary>
+      <Repetition>
+        <Interval>PT10M</Interval>
+        <Duration>P1D</Duration>
+      </Repetition>
+    </TimeTrigger>
+  </Triggers>
+  <Actions Context="Author">
+    <Exec>
+      <Command>powershell</Command>
+      <Arguments>C:\logan\scripts\CheckIn.ps1</Arguments>
+    </Exec>
+  </Actions>
+</Task>
+#>
+
+$mytask = Get-ScheduledTask |Where taskname -eq 'CheckIn'
+$MyTask
+$MyTask|Stop-ScheduledTask
+$mytask = Get-ScheduledTask |Where taskname -eq 'CheckIn'
+# Need Run As Admin , to Unregister the Task
+$MyTask|Unregister-ScheduledTask
+
+# Need Run As Admin , to Unregister the Task
+Register-ScheduledTask -Xml 'C:\temp\CheckIn.xml' -TaskName "CheckIn"
+# if the above complaint: Register-ScheduledTask : The task XML is malformed.
+# Try the following
+Register-ScheduledTask -Xml (get-content 'C:\temp\CheckIn.xml' | out-string) -TaskName "CheckIn"
+
+
+<#
+export all the tasks
+#>
+#
+Get-ScheduledTask | foreach {
+ 
+    Export-ScheduledTask -TaskName $_.TaskName -TaskPath $_.TaskPath |
+     
+    Out-File (Join-Path "\\myhost\e$" "$($_.TaskName).xml") -WhatIf
+}
+# export a task from remotehost
+get-scheduledtask -TaskName "*Windowsbackup" -CimSession MYRemoteHost  | Export-ScheduledTask | out-file \\myhost\e$\WindowsBackup.
+
 <#
 Create a new task
 #>
@@ -48,26 +125,3 @@ Import-Module ScheduledTasks
 $action = New-ScheduledTaskAction -Execute 'Powershell.exe' -Argument '-NoProfile -WindowStyle Hidden -command "& {get-eventlog -logname Application -After ((get-date).AddDays(-1)) | Export-Csv -Path c:\temp\applog.csv -Force -NoTypeInformation}"' 
 $trigger =  New-ScheduledTaskTrigger -Daily -At 9am 
 Register-ScheduledTask -Action $action -Trigger $trigger -TaskName "AppLog" -Description "Daily dump of Applog"
-
-<#
-Export a scheduled task
-#>
-Export-ScheduledTask "Weekly System Info Report"
-#
-Export-ScheduledTask "Weekly System Info Report" | out-file \\myhost\e$\MyTask.xml
-#
-Get-ScheduledTask | foreach {
- 
-    Export-ScheduledTask -TaskName $_.TaskName -TaskPath $_.TaskPath |
-     
-    Out-File (Join-Path "\\myhost\e$" "$($_.TaskName).xml") -WhatIf
-}
-#
-get-scheduledtask -TaskName "*Windowsbackup" -CimSession MYRemoteHost  | Export-ScheduledTask | out-file \\myhost\e$\WindowsBackup.
-
-<#
-Import a scheduled task
-#>
-Register-ScheduledTask -Xml '\\myhost\e$\MyTask.xml' -TaskName "Weekly System Info Report"
-#
-Register-ScheduledTask -Xml (get-content '\myhost\e$\MyTask.xml' | out-string) -TaskName "Weekly System Info Report"
