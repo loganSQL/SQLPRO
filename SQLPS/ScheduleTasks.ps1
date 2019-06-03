@@ -18,7 +18,7 @@ $MyTask.Actions.Arguments
 $MyTask.Principal
 
 # Find all tasks owned by UserID
-Get-ScheduledTask |Where {$_.Principal.UserID  -eq 'logan.chen'}
+Get-ScheduledTask |Where {$_.Principal.UserID  -eq 'logansql'}
 
 
 <#
