@@ -174,20 +174,21 @@ turtle.reset()
 turtle.bye() 
 
 ############################
-#   5. Functions
+#    7. While Loop
 ############################
 
-#def mainFunction():
-# 
-#def dictionaryList(fileName):
-#...
-#return (allAbbreviations, allTranslations)
-#...
-#return (finalMessage)
-#mainFunction()
+import turtle
+turtle.Turtle()
+counter = 0 
+while counter < 4:
+     turtle.forward(100)
+     turtle.right(90)
+     counter = counter+1
+turtle.reset()
+turtle.bye()
 
 ############################
-#   List
+#  8. List
 ############################
 
 # A List
@@ -216,3 +217,88 @@ print (guests[-1])
 ##update a value
 guests[3] = 'Sonal'
 print (guests[3])
+
+############################
+# 9. Files
+############################
+# myFile = open(fileName, accessMode) 
+#  accessMode       Action
+#   "r" - Read - Default value. Opens a file for reading, error if the file does not exist
+#   "a" - Append - Opens a file for appending, creates the file if it does not exist
+#   "w" - Write - Opens a file for writing, creates the file if it does not exist
+#   "x" - Create - Creates the specified file, returns an error if the file exists
+# the file should be handled as binary or text mode:
+#   "t" - Text - Default value. Text mode
+#   "b" - Binary - Binary mode (e.g. images)
+# Write to a file
+fileName = "GuestList.txt" 
+accessMode = "w" 
+myFile = open(fileName, accessMode) 
+myFile.write("Hi there!\n")
+myFile.write("How are you?")
+myFile.close()
+
+# CSV file (separated by a char comman or semi colon)
+fileName = "GuestList.csv" 
+f = open(fileName, "w")
+f.write('Susan, 29\n')
+f.write('Christopher, 31')
+f.close()
+
+print('File written successfully')
+
+# Read from a file
+#
+# Text file
+fileName = "GuestList.txt" 
+f=open(fileName, "rt")
+print(f.read())
+
+f=open(fileName, "rt")
+print(f.read(5))
+
+f=open(fileName, "rt")
+print(f.readline())
+print(f.readline())
+
+f.close()
+
+# CSV
+import csv
+
+#Open my file
+with open("GuestList.csv","r") as f:
+    allRowsList = csv.reader(f)
+    for currentRow in allRowsList :
+        print(';'.join(currentRow))
+        for currentWord in currentRow :
+            print(currentWord)
+f.close()
+
+
+# delete a file
+import os
+os.remove("GuestList.csv")
+if os.path.exists("demofile.txt"):
+  os.remove("demofile.txt")
+else:
+  print("The file does not exist")
+# remove a empty folder
+os.rmdir("myfolder")
+
+
+
+
+############################
+#    Functions
+############################
+
+#def mainFunction():
+# 
+#def dictionaryList(fileName):
+#...
+#return (allAbbreviations, allTranslations)
+#...
+#return (finalMessage)
+#mainFunction()
+
