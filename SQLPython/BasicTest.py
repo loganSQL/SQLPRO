@@ -106,6 +106,73 @@ if freeToaster :
     print("enjoy your toaster")
 print("Have a nice day!")
 
+#######################################################
+#   6. For (Repeat)
+#       Must indent the code you want repeated
+#######################################################
+from turtle import *
+#import turtle 
+# start the screen
+turtle.Turtle()
+
+# draw a square
+for steps in range(4):   
+    turtle.forward(100)     
+    turtle.right(90)
+
+# wait...
+# clear
+turtle.reset()
+
+# Nested
+for steps in range(4):
+     turtle.forward(100)
+     turtle.right(90)
+     for moresteps in range(4):
+         turtle.forward(50)
+         turtle.right(90)
+ # clear
+turtle.reset()
+
+# Fun shape
+for steps in range(5):
+     turtle.forward(100)
+     turtle.right(360/5)
+     for moresteps in range(5):
+         turtle.forward(50)
+         turtle.right(360/5)
+# clear
+turtle.reset()
+ # 
+#import turtle
+nbrSides = 6
+for steps in range(nbrSides):
+     turtle.forward(100)
+     turtle.right(360/nbrSides)
+     for moresteps in range(nbrSides):
+         turtle.forward(50)
+         turtle.right(360/nbrSides)
+
+# print 1,2,3
+for steps in range (1,4):
+    print(steps)
+    
+# print 1,3,5,7,9
+for steps in range (1,10,2):
+    print(steps)
+
+# print exact
+#import turtle 
+for steps in ['red','blue','green','black'] :
+     turtle.color(steps)
+     turtle.forward(100)
+     turtle.right(90)
+
+# clear the screen
+turtle.reset()
+# close the screen
+turtle.bye() 
+
 ############################
 #   5. Functions
 ############################
@@ -117,8 +184,7 @@ print("Have a nice day!")
 #return (allAbbreviations, allTranslations)
 #...
 #return (finalMessage)
-
-mainFunction()
+#mainFunction()
 
 ############################
 #   List
