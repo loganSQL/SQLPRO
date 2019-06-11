@@ -21,6 +21,6 @@ def get_json(symbol,api_key):
     json.dump(data, outfile)
 
 if __name__ == '__main__':
-  api_key="BF7URSKKKKNOFZET"
+  api_key="XXXXXX"
   get_json('ROKU',api_key)
   get_json('MSFT',api_key)
