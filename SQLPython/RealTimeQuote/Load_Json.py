@@ -15,7 +15,6 @@ def load_json(symbol,svr,drv,db):
     connstr='Driver=SQL Server;Server='+svr+';Database='+db+'; Trusted_Connection=Yes;'
     conn = pypyodbc.connect(connstr)
     cursor = conn.cursor()
-    #SQLCommand="exec Load_Parse_Json '"+symbol+"','"+dest_path + filename"'"
     SQLCommand="exec Load_Parse_Json '"+symbol+"','"+dest_path + filename+"'"
     cursor.execute(SQLCommand)
     cursor.commit()
