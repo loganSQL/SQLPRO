@@ -287,18 +287,3 @@ else:
 os.rmdir("myfolder")
 
 
-
-
-############################
-#    Functions
-############################
-
-#def mainFunction():
-# 
-#def dictionaryList(fileName):
-#...
-#return (allAbbreviations, allTranslations)
-#...
-#return (finalMessage)
-#mainFunction()
-
