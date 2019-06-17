@@ -286,4 +286,89 @@ else:
 # remove a empty folder
 os.rmdir("myfolder")
 
+###############
+# 10 Json
+###############
 
+# 10.1 Parse JSON - Convert from JSON string to Python Object
+# deserialization
+# json.load()
+import json
+
+# some JSON:
+x =  '{ "name":"John", "age":30, "city":"New York"}'
+
+# parse x:
+y = json.loads(x)
+
+# the result is a Python dictionary:
+print(y["age"])
+
+# 10.2 Convert from Python Object to JSON string 
+# json.dum(): serialization
+#
+# a Python object (dict):
+x = {
+  "name": "John",
+  "age": 30,
+  "city": "New York"
+}
+
+# convert into JSON string:
+# serialization to string 
+y = json.dumps(x)
+
+# serialization to persisting file
+# (1) the data object to be serialized, and (2) the file-like object to which the bytes will be written.
+with open("data_file.json", "w") as write_file:
+    json.dump(data, write_file)
+
+
+# the result is a JSON string:
+print(y)
+
+# You can convert Python objects of the following types, into JSON strings (Javascript type):
+#   list
+#   tuple
+#   string
+#   int
+#   float
+#   True
+#   False
+#   None
+print(json.dumps({"name": "John", "age": 30}))
+print(json.dumps(["apple", "bananas"]))
+print(json.dumps(("apple", "bananas")))
+print(json.dumps("hello"))
+print(json.dumps(42))
+print(json.dumps(31.76))
+print(json.dumps(True))
+print(json.dumps(False))
+print(json.dumps(None))
+
+x = {
+  "name": "John",
+  "age": 30,
+  "married": True,
+  "divorced": False,
+  "children": ("Ann","Billy"),
+  "pets": None,
+  "cars": [
+    {"model": "BMW 230", "mpg": 27.5},
+    {"model": "Ford Edge", "mpg": 24.1}
+  ]
+}
+
+print(json.dumps(x))
+
+# format
+# indents
+json.dumps(x, indent=4)
+# separators
+json.dumps(x, indent=4, separators=(". ", " = "))
+# sort_keys
+json.dumps(x, indent=4, sort_keys=True)
+# import pprint
+import pprint
+pp = pprint.PrettyPrinter(indent=4)
+pp.pprint(X)
