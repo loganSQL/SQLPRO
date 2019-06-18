@@ -2,7 +2,15 @@
     "posts": [
       {
         "id": 1,
-        "title": "hello"
+        "title": "hello",
+        "author": "LoganSQL"
+      }
+    ],
+    "comments": [
+      {
+        "id": 1,
+        "body": "Test body",
+        "postId": 1
       }
     ],
     "profile": {
