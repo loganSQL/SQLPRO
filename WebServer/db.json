@@ -1,0 +1,22 @@
+{
+  "employees": [
+    {
+      "id": 1,
+      "first_name": "Larry",
+      "last_name": "Thomas",
+      "email": "Larry@logansql.com"
+    },
+    {
+      "id": 2,
+      "first_name": "Marry",
+      "last_name": "Lee",
+      "email": "marry@logansql.com"
+    },
+    {
+      "id": 3,
+      "first_name": "Nick",
+      "last_name": "Shen",
+      "email": "Nick@logansql.com"
+    }
+  ]
+}
