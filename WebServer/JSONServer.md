@@ -6,4 +6,4 @@
 * [comments](http://my-json-server.typicode.com/logansql/sqlpro/comments) [/1](http://my-json-server.typicode.com/logansql/sqlpro/comments/1)
 * [profile](http://my-json-server.typicode.com/logansql/sqlpro/profile)
 
-### [Typicode/demo](https://my-json-server.typicode.com/typicode/demo/posts)
+### [Typicode/demo](https://my-json-server.typicode.com/typicode/demo)
