@@ -1,0 +1,72 @@
+{
+    "posts": [
+      {
+        "id": 1,
+        "title": "Post 1: 2019 NBA Final GSW vs Toronto Raptor Game 1 => 109 : 118 "
+      },
+      {
+        "id": 2,
+        "title": "Post 2: 2019 NBA Final GSW vs Toronto Raptor Game 2 => 109 : 104"
+      },
+      {
+        "id": 3,
+        "title": "Post 3: 2019 NBA Final GSW vs Toronto Raptor Game 3 => 109 : 123"
+      },
+      {
+        "id": 4,
+        "title": "Post 4: 2019 NBA Final GSW vs Toronto Raptor Game 4 => 92 : 105"
+      },
+      {
+        "id": 5,
+        "title": "Post 5: 2019 NBA Final GSW vs Toronto Raptor Game 5 => 109 : 106"
+      }
+    ],
+    "comments": [
+      {
+        "id": 1,
+        "body": "Scotiabank Arena",
+        "postId": 1
+      },
+      {
+        "id": 2,
+        "body": "Oracle Arena",
+        "postId": 1
+      }
+    ],
+    "profile": {
+      "name": "LoganSQL"
+    }
+  }
+# Second example
+{
+    "employees": [
+      {
+        "id": 1,
+        "first_name": "Larry",
+        "last_name": "Thomas",
+        "email": "Larry@logansql.com"
+      },
+      {
+        "id": 2,
+        "first_name": "Marry",
+        "last_name": "Lee",
+        "email": "marry@logansql.com"
+      },
+      {
+        "id": 3,
+        "first_name": "Nick",
+        "last_name": "Shen",
+        "email": "Nick@logansql.com"
+      }
+    ]
+  }
+;
+
+
+# another example
+  {
+    "movies": [
+      {"id": 1, "name": "The Godfather", "director":"Francis Ford Coppola", "rating": 9.1},
+      {"id": 2, "name": "Casablanca", "director": "Michael Curtiz", "rating": 8.8}
+    ]
+  }
